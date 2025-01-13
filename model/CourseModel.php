@@ -47,4 +47,36 @@ class CourseModel{
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(["id"=>$id]);
     }
+    public function edit($id, $title, $description, $category, $tags, $videoPath, $documentPath, $thumbnailPath) {
+        try {
+    
+            $sql = "UPDATE courses SET title = :title, video_path = :videoPath,  document_path = :documentPath,  thumbnail = :thumbnail,  description = :description, category_id = :category WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+
+            $stmt->execute([
+                "id" => $id,
+                "title" => $title,
+                "description" => $description,
+                "category" => $category,
+                "videoPath" => $videoPath,
+                "documentPath" => $documentPath,
+                "thumbnail" => $thumbnailPath
+            ]);
+    
+            $sql = "DELETE FROM course_tags WHERE course_id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(["id" => $id]);
+    
+
+            $sql = "INSERT INTO course_tags (course_id, tag_id) VALUES (:course_id, :tag_id)";
+            $stmt = $this->pdo->prepare($sql);
+            foreach ($tags as $tag) {
+                $stmt->execute(["course_id" => $id, "tag_id" => $tag]);
+            }
+    
+        } catch (PDOException $e) {
+            echo "Error updating course: " . $e->getMessage();
+        }
+    }
+    
 }

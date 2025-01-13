@@ -83,4 +83,17 @@ class CourseController{
          header("location: index.php?action=manageCourses");
     }
 
+    public function EditCourse($id){
+        $courses = $this->CourseModel->getAll('id = '.$id);
+        $categories = $this->CategoryeModel->getAll();
+        $tags = $this->TagModel->getAll();
+        require_once "view/edit-course-form.php";
+    }
+
+    public function CourseEdit($id,$title, $Description, $category, $tags, $videoPath, $documentPath, $ThumbnailPath){
+        $this->CourseModel->edit($id,$title, $Description, $category, $tags, $videoPath, $documentPath, $ThumbnailPath);
+        header("location: index.php?action=manageCourses");
+    }
+
+
 }
