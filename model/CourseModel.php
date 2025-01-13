@@ -10,10 +10,10 @@ class CourseModel{
         $this->pdo = $database->getConnection();
     }
 
-    public function createCourse($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath){
-        $sql = "INSERT INTO courses (title,description,category_id,teacher_id,video_path,document_path) values (:title,:description,:category_id,:teacher_id,:video_path,:document_path)";
+    public function createCourse($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath){
+        $sql = "INSERT INTO courses (title,description,category_id,teacher_id,video_path,document_path,thumbnail) values (:title,:description,:category_id,:teacher_id,:video_path,:document_path,:thumbnail)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(["title"=>$title,"description"=>$Description,"category_id"=>$category,"teacher_id"=>$teacher_id,"video_path"=>$videoPath,"document_path"=>$documentPath]);
+        $stmt->execute(["title"=>$title,"description"=>$Description,"category_id"=>$category,"teacher_id"=>$teacher_id,"video_path"=>$videoPath,"document_path"=>$documentPath,'thumbnail'=>$ThumbnailPath]);
 
         $course_id = $this->pdo->lastInsertId();
         $sql = "INSERT INTO course_tags (course_id,tag_id) values (:course_id,:tag_id)";

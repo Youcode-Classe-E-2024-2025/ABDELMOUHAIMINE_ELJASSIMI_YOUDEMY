@@ -1,4 +1,12 @@
-<?php include("header.php") ?>
+<?php
+session_start();
+if(!empty($_SESSION['user_id'])){
+    header("location:?action=home");
+    exit;
+}
+
+include("header.php") 
+?>
 <div class="min-h-screen flex items-center justify-center">
     <div class="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-md text-gray-300">
         <h1 id="auth-title" class="text-2xl font-bold mb-6 text-center text-purple-400">Log in to Your Account</h1>

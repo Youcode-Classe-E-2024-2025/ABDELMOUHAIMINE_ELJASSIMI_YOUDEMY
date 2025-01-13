@@ -21,7 +21,7 @@ class CourseController{
     public function DisplayCourseForm(){
        $categories = $this->CategoryeModel->getAll();
        $tags = $this->TagModel->getAll();
-        require_once "view/create_form_course.php";
+        require_once "view/create-course-form.php";
     }
 
 
@@ -32,7 +32,7 @@ class CourseController{
         $fileTmpName = $file["tmp_name"];
         $fileSize = $file["size"];
         $fileError = $file["error"];
-    
+
         $targetFile = $targetDir . '/' . $fileName;
     
         if (!in_array($fileType, $allowedTypes)) {
@@ -54,15 +54,13 @@ class CourseController{
         }
     }
 
-    public function create($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath){
-        $this->CourseModel->createCourse($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath);
+    public function create($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath){
+        $this->CourseModel->createCourse($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath);
         require_once "view/home.php";
     }
 
     public function GetAllCourses(){
         return $this->CourseModel->getAll();
     }
-
-
 
 }

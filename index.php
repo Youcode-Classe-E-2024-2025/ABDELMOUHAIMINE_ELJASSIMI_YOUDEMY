@@ -1,7 +1,11 @@
 <?php
 require "controller/UserController.php";
+require "controller/CourseController.php";
 
 $UserController = new UserController();
+$CourseController = new CourseController();
+
+session_start();
 
 $action = $_GET["action"]??'home';
 
@@ -65,7 +69,7 @@ switch($action){
                 if ($ThumbnailFile['error'] === UPLOAD_ERR_OK) {
                     $ThumbnailPath = $CourseController->uploadFile($ThumbnailFile, 'uploads/photo');
                 }
-    
+                 var_dump($ThumbnailPath);
                 $CourseController->create(htmlspecialchars($title),htmlspecialchars($Description),$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath);
             }
             break;

@@ -1,8 +1,9 @@
 <?php
-        // if(empty($_SESSION['user_id'])){
-        //     header("location:?action=login");
-        //     exit;
-        // }
+        session_start();
+        if(empty($_SESSION['user_id'])){
+            header("location:?action=login");
+            exit;
+        }
 include("header.php") ?>
         <div class="container mx-auto px-4 py-8">
             <h1 class="text-3xl font-bold mb-8 text-center text-purple-400">Add New Course</h1>
