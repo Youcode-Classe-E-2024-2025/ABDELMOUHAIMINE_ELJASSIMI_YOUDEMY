@@ -64,13 +64,23 @@ class CourseController{
     }
 
     public function Home(){
-        $courses = $this->GetAllCourses();
+        $courses = $this->CourseModel->getAll();
         require_once "view/home.php";
     }
 
     public function DisplayCourseContent($id){
-        $course = $this->CourseModel->getAll('id = '.$id);
+        $courses = $this->CourseModel->getAll('id = '.$id);
         require_once "view/CourseDetails.php";
+    }
+
+    public function ManageCourse(){
+        $courses = $this->CourseModel->getAll('teacher_id = '.$_SESSION["user_id"]);
+        require_once "view/ManageCourses.php";
+    }
+
+    public function DeleteCourse($id){
+         $this->CourseModel->Delete($id);
+         header("location: index.php?action=manageCourses");
     }
 
 }

@@ -1,7 +1,6 @@
 <?php
-session_start();
 if(!empty($_SESSION['user_id'])){
-    header("location:?action=home");
+    header("location: index.php?action=home");
     exit;
 }
 
@@ -10,7 +9,7 @@ include("header.php")
 <div class="min-h-screen flex items-center justify-center">
     <div class="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-md text-gray-300">
         <h1 id="auth-title" class="text-2xl font-bold mb-6 text-center text-purple-400">Log in to Your Account</h1>
-        <form id="login-form" action="?action=logincheck" method="POST">
+        <form id="login-form" action="index.php?action=logincheck" method="POST">
             <div class="mb-4">
                 <label for="login-email" class="block text-gray-400 font-semibold mb-2">Email Address</label>
                 <input  type="email" id="login-email"  name="email" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-200"  required >
@@ -37,7 +36,7 @@ include("header.php")
         </form>
 
         <!-- Register Form -->
-        <form id="register-form" action="?action=register" method="POST" class="hidden">
+        <form id="register-form" action="index.php?action=register" method="POST" class="hidden">
             <div class="mb-4">
                 <label for="register-name" class="block text-gray-400 font-semibold mb-2">Full Name</label>
                 <input type="text" id="register-name" name="name" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-200"  required>

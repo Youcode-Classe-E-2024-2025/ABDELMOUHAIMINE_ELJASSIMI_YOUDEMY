@@ -11,13 +11,13 @@ $role = isset($_SESSION["user_role"]) ? $_SESSION["user_role"] : 'visiteur';
         <ul class="flex space-x-6">
             <li><a href="?action=home" class="text-white hover:text-purple-400 transition">Catalogue</a></li>
             <?php if ($role === 'visiteur'): ?>
-                <li><a href="?action=login" class="text-white hover:text-purple-400 transition">Login</a></li>
+                <li><a href="index.php?action=login" class="text-white hover:text-purple-400 transition">Login</a></li>
             <?php elseif ($role === 'student'): ?>
                 <li><a href="" class="text-white hover:text-purple-400 transition">Mes Cours</a></li>
                 <li><a href="profile.php" class="text-white hover:text-purple-400 transition">Profil</a></li>
             <?php elseif ($role === 'teacher'): ?>
-                <li><a href="?action=addCourse" class="text-white hover:text-purple-400 transition">Ajouter un cours</a></li>
-                <li><a href="?action=manage_courses" class="text-white hover:text-purple-400 transition">Gérer mes cours</a></li>
+                <li><a href="index.php?action=addCourse" class="text-white hover:text-purple-400 transition">Ajouter un cours</a></li>
+                <li><a href="index.php?action=manageCourses" class="text-white hover:text-purple-400 transition">Gérer mes cours</a></li>
                 <li><a href="stats.php" class="text-white hover:text-purple-400 transition">Statistiques</a></li>
             <?php elseif ($role === 'admin'): ?>
                 <li><a href="validate_teachers.php" class="text-white hover:text-purple-400 transition">Valider enseignants</a></li>
@@ -59,7 +59,7 @@ $role = isset($_SESSION["user_role"]) ? $_SESSION["user_role"] : 'visiteur';
                     <p class="text-gray-400 mb-6"><?= $course["description"]?></p>
                     <div class="flex justify-between items-center">
                         <span class="text-purple-400 font-bold text-xl">$49.99</span>
-                        <a href="?action=CourseDetails&id=<?= $course["id"]?>" class="bg-purple-600 text-white px-6 py-2 rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg transition duration-300">View Details</a>
+                        <a href="index.php?action=CourseDetails&id=<?= $course["id"]?>" class="bg-purple-600 text-white px-6 py-2 rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg transition duration-300">View Details</a>
                     </div>
                 </div>
             </div>

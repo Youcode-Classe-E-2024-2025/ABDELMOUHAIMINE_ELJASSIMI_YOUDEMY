@@ -36,13 +36,15 @@ class CourseModel{
         $sql = "SELECT * FROM courses";
         if (!empty($condition)) {
             $sql .= " WHERE $condition";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
         }
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
+    public function Delete($id){
+        $sql="DELETE FROM courses WHERE id=:id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(["id"=>$id]);
+    }
 }

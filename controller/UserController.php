@@ -24,11 +24,10 @@ class UserController
     public function login($email, $password)
     {
         $user = $this->userModel->login($email, $password);
-        session_start();
         $_SESSION['user_email'] = $email;
         $_SESSION['user_id'] = $user['id'];
         $_SESSION["user_role"]=$user["role"];
-        require_once "view/home.php";
+        header('location: index.php');
     }
     public function logout(){
         session_unset();

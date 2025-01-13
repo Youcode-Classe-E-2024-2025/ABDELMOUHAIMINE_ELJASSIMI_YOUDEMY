@@ -78,5 +78,18 @@ switch($action){
             $id = $_GET["id"];
             $CourseController->DisplayCourseContent($id);
             break;
+
+        case "manageCourses" :
+            $CourseController->ManageCourse();
+            break;
+        case "editCourse" : 
+            $id = $_POST['id'];
+
+            break;
+        case "deleteCourse" : 
+            $id = $_POST['id'];
+            $CourseController->DeleteCourse($id);
+            break;
+        
 }
 ?>

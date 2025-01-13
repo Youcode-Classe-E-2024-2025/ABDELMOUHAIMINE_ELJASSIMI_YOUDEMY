@@ -17,7 +17,7 @@ include("header.php"); ?>
 </header>
 
 
-
+<?php  foreach($courses as $course):?>
 <section class="bg-gradient-to-r from-gray-800 to-gray-900 py-16">
     <div class="container mx-auto px-6">
         <div class="mb-10">
@@ -93,6 +93,7 @@ include("header.php"); ?>
         </div>
     </div>
 </section>
+<?php  endforeach; ?>
 
 <?php include("footer.php") ?>
 </body>
