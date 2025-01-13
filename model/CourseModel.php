@@ -36,11 +36,12 @@ class CourseModel{
         $sql = "SELECT * FROM courses";
         if (!empty($condition)) {
             $sql .= " WHERE $condition";
-        }
-
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
-
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     

@@ -69,8 +69,8 @@ class CourseController{
     }
 
     public function DisplayCourseContent($id){
-        $course = $this->CourseModel->getAll($id);
-        
+        $course = $this->CourseModel->getAll('id = '.$id);
+        require_once "view/CourseDetails.php";
     }
 
 }
