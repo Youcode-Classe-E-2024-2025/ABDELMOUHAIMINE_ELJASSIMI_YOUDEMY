@@ -20,7 +20,7 @@ switch($action){
         $email = $_POST["email"];
         $password = $_POST["password"];
         $role = $_POST["role"];
-        $UserController->register($name,$email,$password,$role);
+        $UserController->register(htmlspecialchars($name),htmlspecialchars($email),htmlspecialchars($password),$role);
         }
         break;
 
@@ -28,8 +28,11 @@ switch($action){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $_POST["email"];
         $password = $_POST["password"];
-        $UserController->login($email,$password);
+        $UserController->login(htmlspecialchars($email),htmlspecialchars($password));
         }
+        break;
+    case "logout":
+        $UserController->logout();
         break;
 }
 ?>
