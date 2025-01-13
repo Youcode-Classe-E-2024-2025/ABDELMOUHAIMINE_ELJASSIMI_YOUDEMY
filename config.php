@@ -26,7 +26,7 @@ class Database {
                 $this->db->exec("USE $this->dbname");
             }
 
-            return $this->db;
+        return $this->db;
         } catch (PDOException $e) {
             error_log("Database Connection Error: " . $e->getMessage());
             die("Database connection failed: " . $e->getMessage());

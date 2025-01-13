@@ -1,5 +1,4 @@
 <?php
-        session_start();
         if(empty($_SESSION['user_id'])){
             header("location:?action=login");
             exit;
@@ -16,6 +15,10 @@ include("header.php") ?>
                 <div class="mb-4">
                     <label for="description" class="block text-gray-400 font-semibold mb-2">Course Description</label>
                     <textarea id="description" name="description" rows="4" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md" required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="Price" class="block text-gray-400 font-semibold mb-2">Course Price</label>
+                    <input id="price" type="number" name="price" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md" required>
                 </div>
                 <div class="mb-4">
                     <label for="category" class="block text-gray-400 font-semibold mb-2">Category</label>

@@ -63,4 +63,14 @@ class CourseController{
         return $this->CourseModel->getAll();
     }
 
+    public function Home(){
+        $courses = $this->GetAllCourses();
+        require_once "view/home.php";
+    }
+
+    public function DisplayCourseContent($id){
+        $course = $this->CourseModel->getAll($id);
+        
+    }
+
 }

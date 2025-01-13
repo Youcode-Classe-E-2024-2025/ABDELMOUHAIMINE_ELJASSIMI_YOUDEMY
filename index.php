@@ -11,7 +11,7 @@ $action = $_GET["action"]??'home';
 
 switch($action){
     case "home":
-        require_once "view/home.php";
+        $CourseController->Home();
         break;
 
     case "login":
@@ -45,12 +45,13 @@ switch($action){
             break;
 
         case 'createCourse':
-            if($_SERVER["REQUEST_METHOD"] === 'POST'){
-                $title = $_POST["title"];
-                $Description = $_POST["description"];
-                $category = $_POST["category"];
+            if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+                $title = htmlspecialchars($_POST["title"]);
+                $Description = htmlspecialchars($_POST["description"]);
+                $price = floatval($_POST["price"]); // Ensure price is numeric
+                $category = intval($_POST["category"]);
                 $tags = $_POST['tags'];
-                $teacher_id =$_SESSION["user_id"];
+                $teacher_id = intval($_SESSION["user_id"]);
     
                 $videoFile = $_FILES['video_file'];
                 $videoPath = null;
@@ -69,9 +70,13 @@ switch($action){
                 if ($ThumbnailFile['error'] === UPLOAD_ERR_OK) {
                     $ThumbnailPath = $CourseController->uploadFile($ThumbnailFile, 'uploads/photo');
                 }
-                 var_dump($ThumbnailPath);
-                $CourseController->create(htmlspecialchars($title),htmlspecialchars($Description),$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath);
-            }
+                $CourseController->create($title, $Description, $category, $tags, $teacher_id, $videoPath, $documentPath, $ThumbnailPath);           
+             }
+            break;
+
+        case "CourseDetails" : 
+            $id = $_GET["id"];
+            $CourseController->DisplayCourseContent($id);
             break;
 }
 ?>
