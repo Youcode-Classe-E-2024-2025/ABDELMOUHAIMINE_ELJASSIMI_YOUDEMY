@@ -20,4 +20,19 @@ class UserController
     {
         return $this->userModel->getAll();
     }
+
+    public function login($email, $password)
+    {
+        $user = $this->userModel->login($email, $password);
+        $_SESSION['user_email'] = $email;
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION["user_role"]=$user["role"];
+        require_once "view/home.php";
+    }
+
+    public function logout(){
+        session_unset();
+        session_destroy();
+        require_once "view/login&register.php";
+    }
 }

@@ -35,5 +35,22 @@ class UserModel{
         return $this->pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getByEmail($email)
+    {
+        $query = "SELECT * FROM users WHERE email = :email";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
     
+    public function login($email, $password)
+    {
+        $user = $this->getByEmail($email);
+        if ($user && password_verify($password, $user['password'])) {
+            return $user;
+        }
+        return false;
+    }
+
 }
