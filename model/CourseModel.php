@@ -33,14 +33,20 @@ class CourseModel{
 
     }
     public function getAll($condition = '') {
-        $sql = "SELECT * FROM courses";
+        $sql = "SELECT c.*,  cat.name AS category_name, COUNT(e.student_id) AS enrolled_students FROM  courses c JOIN categories cat  
+                 ON c.category_id = cat.id LEFT JOIN enrollments e  ON c.id = e.course_id";
+    
         if (!empty($condition)) {
             $sql .= " WHERE $condition";
         }
+
+        $sql .= " GROUP BY c.id, cat.name";
+    
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 
     public function Delete($id){
         $sql="DELETE FROM courses WHERE id=:id";
@@ -79,4 +85,17 @@ class CourseModel{
         }
     }
     
+    public function Enroll($course_id,$student_id){
+        $sql = "INSERT INTO enrollments (student_id,course_id) values (:student_id,:course_id);";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(["student_id"=>$student_id,"course_id"=>$course_id]);
+    }
+
+    public function Cours($student_id){
+        $sql = " SELECT c.*, cat.name AS category_name FROM  courses c JOIN  enrollments e  ON c.id = e.course_id 
+        JOIN categories cat ON c.category_id = cat.id WHERE e.student_id = :student_id ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['student_id' => $student_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

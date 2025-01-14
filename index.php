@@ -115,7 +115,18 @@ switch($action){
                     $ThumbnailPath = $CourseController->uploadFile($ThumbnailFile, 'uploads/photo');
                 }
 
-                $CourseController->CourseEdit($id,$title, $Description, $category, $tags, $videoPath, $documentPath, $ThumbnailPath);           
+                $CourseController->CourseEdit($id,$title, $Description, $category, $tags, $videoPath, $documentPath, $ThumbnailPath);  
+                break;
+
+            case "enroll" :
+                $course_id = $_POST["id"];
+                $student_id = $_SESSION["user_id"];
+                $CourseController->EnrollCourse($course_id,$student_id);
+                break;
+            case "mesCours" :
+                $student_id = $_SESSION["user_id"];
+                $CourseController->MesCours($student_id);
+                break;
 
         
 }

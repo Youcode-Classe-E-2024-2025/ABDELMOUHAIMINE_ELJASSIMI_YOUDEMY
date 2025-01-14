@@ -39,9 +39,8 @@ include("header.php") ?>
             <thead class="bg-gray-800">
                 <tr>
                     <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300 uppercase tracking-wide">Course Title</th>
-                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300 uppercase tracking-wide">Students</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300 uppercase tracking-wide">Description</th>
                     <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300 uppercase tracking-wide">Category</th>
-                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300 uppercase tracking-wide">Actions</th>
                 </tr>
             </thead>
             <tbody class="bg-gray-700 divide-y divide-gray-600">
@@ -51,22 +50,12 @@ include("header.php") ?>
                         <div class="text-sm font-medium text-gray-100"><?= $course['title'] ?></div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-400"><?= $course['enrolled_students'] ?></div>
+                        <div class="text-sm text-gray-400"><?= $course['description'] ?></div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <span class="px-3 py-1 inline-flex text-xs font-semibold rounded-full bg-green-500 text-gray-900">
                         <?=$course['category_name']?>
                         </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex">
-                        <form action="index.php?action=editCourse" method="POST">
-                            <input type="hidden" name="id" value="<?=$course['id']?>">
-                            <button type="submit" class="text-blue-400 hover:text-blue-300 transition duration-300 mr-3">Edit</button>
-                        </form>
-                        <form action="index.php?action=deleteCourse" method="POST">
-                            <input type="hidden" name="id" value="<?=$course['id']?>">
-                            <button type="submit" class="text-red-400 hover:text-red-300 transition duration-300">Delete</button>
-                        </form>
                     </td>
                 </tr>
                 <?php endforeach; ?>

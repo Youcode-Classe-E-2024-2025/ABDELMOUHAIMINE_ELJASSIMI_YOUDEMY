@@ -82,12 +82,12 @@ include("header.php"); ?>
                     </ul>
                 </div>
 
-                <!-- Enroll Button -->
+
                 <div class="mt-8">
-                    <a href="enroll.php" 
-                       class="w-full inline-block bg-purple-600 text-white text-center py-3 px-6 rounded-full shadow-lg hover:bg-purple-700 transition duration-300">
-                        Enroll Now
-                    </a>
+                    <form action="index.php?action=enroll" method="POST">
+                        <input type="hidden" name="id" value="<?=$course["id"]?>">
+                        <button class="w-full inline-block bg-purple-600 text-white text-center py-3 px-6 rounded-full shadow-lg hover:bg-purple-700 transition duration-300" type="submit">Enroll Now</button>
+                    </form>
                 </div>
             </div>
         </div>

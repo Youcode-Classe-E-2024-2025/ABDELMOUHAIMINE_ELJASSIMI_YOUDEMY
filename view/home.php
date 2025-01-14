@@ -13,7 +13,7 @@ $role = isset($_SESSION["user_role"]) ? $_SESSION["user_role"] : 'visiteur';
             <?php if ($role === 'visiteur'): ?>
                 <li><a href="index.php?action=login" class="text-white hover:text-purple-400 transition">Login</a></li>
             <?php elseif ($role === 'student'): ?>
-                <li><a href="" class="text-white hover:text-purple-400 transition">Mes Cours</a></li>
+                <li><a href="index.php?action=mesCours" class="text-white hover:text-purple-400 transition">Mes Cours</a></li>
                 <li><a href="profile.php" class="text-white hover:text-purple-400 transition">Profil</a></li>
             <?php elseif ($role === 'teacher'): ?>
                 <li><a href="index.php?action=addCourse" class="text-white hover:text-purple-400 transition">Ajouter un cours</a></li>

@@ -95,5 +95,15 @@ class CourseController{
         header("location: index.php?action=manageCourses");
     }
 
+    public function EnrollCourse($course_id,$student_id){
+        $this->CourseModel->Enroll($course_id,$student_id);
+        header("location: index.php");
+    }
+
+    public function MesCours($student_id){
+        $courses = $this->CourseModel->Cours($student_id);
+        require_once "view/MesCours.php";
+    }
+
 
 }
