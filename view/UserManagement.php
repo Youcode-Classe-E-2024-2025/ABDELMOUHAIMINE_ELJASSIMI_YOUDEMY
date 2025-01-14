@@ -33,10 +33,21 @@ include("header.php") ?>
                          <?= $user["status"] ?>
                         </span>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <button class="text-green-500 hover:text-green-700 transition duration-300 mr-3">Active</button>
-                        <button class="text-yellow-500 hover:text-yellow-700 transition duration-300 mr-3">Suspend</button>
-                        <button class="text-red-500 hover:text-red-700 transition duration-300">Delete</button>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex">
+                        <form action="index.php?action=activeUser" method="POST">
+                            <input type="hidden" Name="user_id" value="<?=$user["id"]?>">
+                            <button type="submit" class="text-green-500 hover:text-green-700 transition duration-300 mr-3">Active</button>
+                        </form>
+
+                        <form action="index.php?action=SuspendUser" method="POST">
+                            <input type="hidden" Name="user_id" value="<?=$user["id"]?>">
+                            <button class="text-yellow-500 hover:text-yellow-700 transition duration-300 mr-3">Suspend</button>
+                        </form>
+
+                        <form action="index.php?action=SuspendUser" method="POST">
+                            <input type="hidden" Name="user_id" value="<?=$user["id"]?>">
+                            <button type="submit" class="text-red-500 hover:text-red-700 transition duration-300">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 <?php endforeach; ?>

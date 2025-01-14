@@ -134,5 +134,9 @@ switch($action){
             case "manageUsers" : 
                 $UserController->ManageUsers();
                 break;
+            case "activeUser" : 
+                $id = $_POST["user_id"];
+                $UserController->activeUser($id);
+                break;
 }
 ?>

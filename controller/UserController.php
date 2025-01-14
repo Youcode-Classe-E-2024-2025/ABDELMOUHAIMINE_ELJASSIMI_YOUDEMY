@@ -39,4 +39,11 @@ class UserController
         $users = $this->userModel->getAll("role != 'admin'");
         require_once "view/UserManagement.php";
     }
+
+    public function activeUser($id){
+        $this->userModel->active($id);
+        header("location: index.php?action=manageUsers");
+    }
+
+
 }
