@@ -117,5 +117,10 @@ class CourseController{
         require_once "view/ContentManagement.php";
     }
 
+    public function adminStats(){
+        $courses = $this->CourseModel->getAll();
+        require_once "view/adminStats.php";
+    }
+
 
 }

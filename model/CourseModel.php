@@ -33,7 +33,7 @@ class CourseModel{
 
     }
     public function getAll($condition = '') {
-        $sql = "SELECT c.*,  cat.name AS category_name, COUNT(e.student_id) AS enrolled_students FROM  courses c JOIN categories cat  
+        $sql = "SELECT c.*, cat.name AS category_name, COUNT(e.student_id) AS enrolled_students FROM  courses c JOIN categories cat  
                  ON c.category_id = cat.id LEFT JOIN enrollments e  ON c.id = e.course_id";
     
         if (!empty($condition)) {

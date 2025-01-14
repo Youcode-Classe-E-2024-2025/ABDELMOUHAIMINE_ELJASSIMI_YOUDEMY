@@ -189,5 +189,8 @@ switch($action){
                 $course = $_POST["course"];
                 $TagController->BulkTag($tags,$course);
                 break;
+            case "adminstats" :
+                $CourseController->adminStats();
+                break;
 }
 ?>

@@ -43,7 +43,7 @@ $role = isset($_SESSION["user_role"]) ? $_SESSION["user_role"] : 'visiteur'; ?>
             <?php elseif ($role === 'admin'): ?>
                 <li><a href="index.php?action=manageUsers" class="text-white hover:text-purple-400 transition">Gérer utilisateurs</a></li>
                 <li><a href="index.php?action=manageContent" class="text-white hover:text-purple-400 transition">Gérer contenu</a></li>
-                <li><a href="admin_stats.php" class="text-white hover:text-purple-400 transition">Statistiques globales</a></li>
+                <li><a href="index.php?action=adminstats" class="text-white hover:text-purple-400 transition">Statistiques globales</a></li>
             <?php endif; ?>
             <?php if ($role !== 'visiteur'): ?>
                 <li><a href="?action=logout" class="text-red-400 hover:text-red-600 transition">Logout</a></li>
