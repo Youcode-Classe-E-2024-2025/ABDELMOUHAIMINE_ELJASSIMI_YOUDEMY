@@ -2,10 +2,12 @@
 require "controller/UserController.php";
 require "controller/CourseController.php";
 require "controller/TagController.php";
+require "controller/CategoryController.php";
 
 $UserController = new UserController();
 $CourseController = new CourseController();
 $TagController = new TagController();
+$CategoryController = new CategoryController();
 
 session_start();
 
@@ -173,6 +175,14 @@ switch($action){
             case "DeleteTag" : 
                 $tagId = $_GET["id"];
                 $TagController->DeleteTag($tagId);
+                break;
+            case "createCategory":
+                $categoryname = $_POST["categoryname"];
+                $CategoryController->CreateCategory($categoryname);
+                break;
+            case "deleteCategory":
+                $categoryId = $_GET["id"];
+                $CategoryController->DeleteCategory($categoryId);
                 break;
 }
 ?>

@@ -52,13 +52,13 @@ include("header.php") ?>
                 <?php foreach($categories as $categorie): ?>
                 <li class="flex justify-between items-center">
                     <span class="text-gray-400"><?= $categorie["name"] ?></span>
-                    <button class="text-red-600 hover:text-red-800 transition duration-300 transform hover:scale-105">Delete</button>
+                    <a href="index.php?action=deleteCategory&id=<?=$categorie["id"]?>" class="text-red-600 hover:text-red-800 transition duration-300 transform hover:scale-105">Delete</a>
                 </li>
                 <?php  endforeach ; ?>
                 <!-- Add more categories -->
             </ul>
-            <form class="mt-6 flex items-center space-x-4">
-                <input type="text" placeholder="New category" class="flex-grow px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 transition duration-200">
+            <form action="index.php?action=createCategory" method="POST" class="mt-6 flex items-center space-x-4">
+                <input type="text" name="categoryname" placeholder="New category" class="flex-grow px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 transition duration-200">
                 <button type="submit" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 transition duration-200">Add</button>
             </form>
         </div>
@@ -68,7 +68,7 @@ include("header.php") ?>
             <h2 class="text-2xl font-semibold mb-6 text-white">Tags</h2>
             <div class="flex flex-wrap gap-3 mb-6">
                 <?php foreach($tags as $tag): ?>
-                <span class="bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium"><?= $tag["name"] ?>    <a href="index.php?action=DeleteTag&id=<?= $tag["id"]?>" class="font-extrabold text-gray-900 ml-4">X</a></span>
+                <span class="bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium"><?= $tag["name"] ?> <a href="index.php?action=DeleteTag&id=<?= $tag["id"]?>" class="font-extrabold text-gray-900 ml-4">X</a></span>
                 <?php endforeach; ?>
             </div>
             <form action="index.php?action=CreateTag" method="POST" class="flex items-center space-x-4">
