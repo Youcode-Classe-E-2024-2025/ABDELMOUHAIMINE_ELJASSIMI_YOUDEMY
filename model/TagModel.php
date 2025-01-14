@@ -17,4 +17,9 @@ class TagModel{
         return $this->pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function create($tagName){
+        $sql = "INSERT INTO tags (name)  values (:name)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(["name"=>$tagName]);
+    }
 }

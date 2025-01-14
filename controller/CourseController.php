@@ -108,8 +108,13 @@ class CourseController{
     public function TeacherStats($teacher_id){
         $stats = $this->CourseModel->teacherStatsics($teacher_id);
         require_once "view/TeacherStatistics.php";
+    }
 
-
+    public function manageContent(){
+        $courses = $this->CourseModel->getAll();
+        $categories = $this->CategoryeModel->getAll();
+        $tags = $this->TagModel->getAll();
+        require_once "view/ContentManagement.php";
     }
 
 

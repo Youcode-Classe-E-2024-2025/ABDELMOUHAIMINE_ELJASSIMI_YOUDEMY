@@ -19,6 +19,7 @@ $role = isset($_SESSION["user_role"]) ? $_SESSION["user_role"] : 'visiteur'; ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Youdemy - Online Learning Platform</title>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -45,7 +46,7 @@ $role = isset($_SESSION["user_role"]) ? $_SESSION["user_role"] : 'visiteur'; ?>
                 <li><a href="index.php?action=TeacherStats" class="text-white hover:text-purple-400 transition">Statistiques</a></li>
             <?php elseif ($role === 'admin'): ?>
                 <li><a href="index.php?action=manageUsers" class="text-white hover:text-purple-400 transition">Gérer utilisateurs</a></li>
-                <li><a href="manage_content.php" class="text-white hover:text-purple-400 transition">Gérer contenu</a></li>
+                <li><a href="index.php?action=manageContent" class="text-white hover:text-purple-400 transition">Gérer contenu</a></li>
                 <li><a href="admin_stats.php" class="text-white hover:text-purple-400 transition">Statistiques globales</a></li>
             <?php endif; ?>
             <?php if ($role !== 'visiteur'): ?>

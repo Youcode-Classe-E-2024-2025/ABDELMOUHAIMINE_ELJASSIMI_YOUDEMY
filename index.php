@@ -1,9 +1,11 @@
 <?php
 require "controller/UserController.php";
 require "controller/CourseController.php";
+require "controller/TagController.php";
 
 $UserController = new UserController();
 $CourseController = new CourseController();
+$TagController = new TagController();
 
 session_start();
 
@@ -160,6 +162,13 @@ switch($action){
                 break;
             case "returnHome" : 
                 $UserController->returnHome();
+                break;
+            case "manageContent" :
+                $CourseController->manageContent();
+                break;
+            case "CreateTag" :
+                $tagName = $_POST["tagname"];
+                $TagController->CreateTag($tagName);
                 break;
 }
 ?>
