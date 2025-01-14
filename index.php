@@ -15,7 +15,7 @@ switch($action){
         break;
 
     case "login":
-          require "view/login&register.php";
+          require_once "view/login&register.php";
         break;
 
     case "register":
@@ -131,7 +131,5 @@ switch($action){
                 $teacher_id = $_SESSION["user_id"];
                 $CourseController->TeacherStats($teacher_id);
                 break;
-
-        
 }
 ?>

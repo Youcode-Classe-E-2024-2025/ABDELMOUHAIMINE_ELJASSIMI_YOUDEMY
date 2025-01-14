@@ -1,22 +1,5 @@
 <?php
-  if(empty($_SESSION['user_id'])){
-    header("location:?action=login");
-      exit;
-  }
 include("header.php"); ?>
-
-<header class="bg-gradient-to-r from-purple-700 via-purple-600 to-purple-500 shadow-lg">
-    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#" class="text-3xl font-extrabold text-white hover:opacity-90 transition duration-300">Youdemy</a>
-        <div class="space-x-4">
-            <?php if(empty($_SESSION['user_id'])):?>
-            <a href="?action=login" class="bg-white text-purple-600 text-lg px-5 py-2 rounded-full shadow-lg hover:bg-purple-100 transition duration-300">Login</a>
-            <?php endif; ?>
-        </div>
-    </nav>
-</header>
-
-
 <?php  foreach($courses as $course):?>
 <section class="bg-gradient-to-r from-gray-800 to-gray-900 py-16">
     <div class="container mx-auto px-6">

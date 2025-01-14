@@ -3,9 +3,22 @@ if(!empty($_SESSION['user_id'])){
     header("location: index.php?action=home");
     exit;
 }
-
-include("header.php") 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youdemy - Online Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
 <div class="min-h-screen flex items-center justify-center">
     <div class="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-md text-gray-300">
         <h1 id="auth-title" class="text-2xl font-bold mb-6 text-center text-purple-400">Log in to Your Account</h1>

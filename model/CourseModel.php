@@ -37,9 +37,8 @@ class CourseModel{
                  ON c.category_id = cat.id LEFT JOIN enrollments e  ON c.id = e.course_id";
     
         if (!empty($condition)) {
-            $sql .= " WHERE $condition";
+            $sql .= " WHERE c.$condition";
         }
-
         $sql .= " GROUP BY c.id, cat.name";
     
         $stmt = $this->pdo->prepare($sql);

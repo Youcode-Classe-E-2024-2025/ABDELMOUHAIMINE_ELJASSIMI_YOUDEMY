@@ -1,11 +1,7 @@
 <?php
-        if(empty($_SESSION['user_id'])){
-            header("location:?action=login");
-            exit;
-        }
 include("header.php") ?>
         <div class="container mx-auto px-4 py-8">
-            <h1 class="text-3xl font-bold mb-8 text-center text-purple-400">Add New Course</h1>
+            <h1 class="text-3xl font-bold mb-8 text-center text-purple-400">Edit Course</h1>
             <?php foreach ($courses as $course):?>
             <form action="?action=CourseEdit" method="POST" enctype="multipart/form-data" class="bg-gray-800 rounded-lg shadow-md p-6 text-gray-300 max-w-lg mx-auto">
                 <div class="mb-4">
