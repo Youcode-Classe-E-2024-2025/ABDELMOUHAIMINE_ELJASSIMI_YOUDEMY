@@ -81,10 +81,10 @@ include("header.php") ?>
     <!-- Bulk Tag Addition -->
     <div class="mt-12 bg-gray-800 rounded-xl shadow-lg p-6">
         <h2 class="text-2xl font-semibold mb-6 text-white">Bulk Tag Addition</h2>
-        <form>
+        <form action="index.php?action=addBulkTag" method="POST">
             <div class="mb-6">
                 <label for="courses" class="block text-gray-400 font-bold mb-3">Select Courses</label>
-                <select id="courses" name="courses" class="w-full px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 transition duration-200">
+                <select id="courses" name="course" class="w-full px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 transition duration-200">
                     <?php foreach($courses as $course): ?>
                     <option value="<?= $course["id"] ?>"><?= $course["title"] ?></option>
                     <?php endforeach; ?>

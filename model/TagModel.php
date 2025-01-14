@@ -28,4 +28,12 @@ class TagModel{
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(["id"=>$tagId]);
     }
+
+    public function InsertBulkTag($tags,$course){
+        $sql="INSERT IGNORE INTO course_tags (course_id,tag_id) values (:course_id,:tag_id)";
+        $stmt = $this->pdo->prepare($sql);
+        foreach ($tags as $tag){
+            $stmt->execute(['course_id'=>$course,'tag_id'=>$tag]);
+        }
+    }
 }

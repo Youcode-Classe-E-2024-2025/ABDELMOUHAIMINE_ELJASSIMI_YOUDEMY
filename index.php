@@ -184,5 +184,10 @@ switch($action){
                 $categoryId = $_GET["id"];
                 $CategoryController->DeleteCategory($categoryId);
                 break;
+            case "addBulkTag" : 
+                $tags = $_POST["tags"];
+                $course = $_POST["course"];
+                $TagController->BulkTag($tags,$course);
+                break;
 }
 ?>
