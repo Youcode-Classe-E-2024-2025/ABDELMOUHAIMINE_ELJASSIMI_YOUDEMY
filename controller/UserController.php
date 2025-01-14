@@ -34,4 +34,9 @@ class UserController
         session_destroy();
         require_once "view/login&register.php";
     }
+
+    public function ManageUsers(){
+        $users = $this->userModel->getAll("role != 'admin'");
+        require_once "view/UserManagement.php";
+    }
 }

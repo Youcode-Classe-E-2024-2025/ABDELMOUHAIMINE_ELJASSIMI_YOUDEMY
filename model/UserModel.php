@@ -29,12 +29,14 @@ class UserModel{
         return $stmt->execute();
     }
     
-    public function getAll()
+    public function getAll($condition = '')
     {
         $query = "SELECT * FROM users";
+        if(!empty($condition)){
+            $query .= " WHERE $condition";
+        }
         return $this->pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }
-
     public function getByEmail($email)
     {
         $query = "SELECT * FROM users WHERE email = :email";

@@ -131,5 +131,8 @@ switch($action){
                 $teacher_id = $_SESSION["user_id"];
                 $CourseController->TeacherStats($teacher_id);
                 break;
+            case "manageUsers" : 
+                $UserController->ManageUsers();
+                break;
 }
 ?>
