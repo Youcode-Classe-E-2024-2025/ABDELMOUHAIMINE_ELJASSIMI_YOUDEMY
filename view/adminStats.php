@@ -22,15 +22,12 @@ include("header.php") ?>
         <div class="bg-gray-800 rounded-xl shadow-lg p-6">
             <h2 class="text-xl font-semibold mb-4 text-white">Top Performing Courses</h2>
             <ul class="space-y-4">
+                <?php foreach ($topCourses as $topCourse):?>
                 <li class="flex justify-between items-center text-white">
-                    <span class="font-medium">Advanced JavaScript Concepts</span>
-                    <span class="text-blue-500 font-bold">1,234 students</span>
+                    <span class="font-medium"><?= $topCourse["title"] ?></span>
+                    <span class="text-blue-500 font-bold"><?= $topCourse["enrollments_count"] ?></span>
                 </li>
-                <li class="flex justify-between items-center text-white">
-                    <span class="font-medium">Python for Data Science</span>
-                    <span class="text-blue-500 font-bold">987 students</span>
-                </li>
-
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>
@@ -43,16 +40,16 @@ include("header.php") ?>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Teacher</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Courses</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Total Students</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Average Rating</th>
                 </tr>
             </thead>
             <tbody class="bg-gray-800 divide-y divide-gray-700">
+                <?php foreach($TeacherStats as $Teacher):?>
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">Jane Smith</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">5</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">3,456</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">4.8</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300"><?= $Teacher["teacher_name"]?></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400"><?= $Teacher["courses_count"]?></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400"><?= $Teacher["total_students"]?></td>
                 </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>

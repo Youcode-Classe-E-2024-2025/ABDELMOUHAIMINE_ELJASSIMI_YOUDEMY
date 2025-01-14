@@ -119,8 +119,11 @@ class CourseController{
 
     public function adminStats(){
         $courses = $this->CourseModel->getAll();
+        $topCourses =$this->CourseModel->TopCourses();
+        $TeacherStats = $this->CourseModel->getTeacherStats();
         require_once "view/adminStats.php";
     }
+
 
 
 }

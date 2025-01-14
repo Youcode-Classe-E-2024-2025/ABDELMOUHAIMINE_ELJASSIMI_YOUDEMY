@@ -105,4 +105,23 @@ class CourseModel{
             $stmt->execute(['teacher_id' => $teacher_id]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function TopCourses(){
+            $sql = "SELECT c.*, COUNT(e.course_id) AS enrollments_count FROM courses c LEFT JOIN  enrollments e ON  c.id = e.course_id GROUP BY 
+               c.id ORDER BY  enrollments_count DESC;";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getTeacherStats() {
+        $sql = "SELECT u.username AS teacher_name, COUNT(c.id) AS courses_count, COUNT(e.id) AS total_students FROM 
+                users u LEFT JOIN courses c ON u.id = c.teacher_id LEFT JOIN enrollments e ON c.id = e.course_id WHERE u.role = 'teacher'
+                GROUP BY u.id ORDER BY total_students DESC";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    
 }
