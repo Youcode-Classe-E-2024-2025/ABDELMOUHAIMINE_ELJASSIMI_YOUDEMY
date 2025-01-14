@@ -136,7 +136,18 @@ switch($action){
                 break;
             case "activeUser" : 
                 $id = $_POST["user_id"];
-                $UserController->activeUser($id);
+                $status = $_POST["status"];
+                $UserController->ChangeStatus($id,$status);
+                break;
+            case "suspendUser" : 
+                $id = $_POST["user_id"];
+                $status = $_POST["status"];
+                $UserController->ChangeStatus($id,$status);
+                break;
+            case "deleteUser" : 
+                $id = $_POST["user_id"];
+                $status = $_POST["status"];
+                $UserController->ChangeStatus($id,$status);
                 break;
 }
 ?>

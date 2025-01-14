@@ -55,10 +55,10 @@ class UserModel{
         return false;
     }
 
-    public function active($id){
-        $sql = "UPDATE users SET status = 'active' WHERE id = :id";
+    public function ChangeStatusUser($id,$status){
+        $sql = "UPDATE users SET status = :status WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(["id"=>$id]);
+        $stmt->execute(["status"=>$status,"id"=>$id]);
     }
 
 }

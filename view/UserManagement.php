@@ -29,23 +29,42 @@ include("header.php") ?>
                         <div class="text-sm text-gray-400"><?= $user["role"] ?></div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
+
+                        <?php if($user["status"] == 'active'):?>
                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                          <?= $user["status"] ?>
                         </span>
+                        <?php endif; ?>
+
+                        <?php if($user["status"] == 'suspended'):?>
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                         <?= $user["status"] ?>
+                        </span>
+                        <?php endif; ?>
+
+                        <?php if($user["status"] == 'deleted'):?>
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                         <?= $user["status"] ?>
+                        </span>
+                        <?php endif; ?>
+
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex">
                         <form action="index.php?action=activeUser" method="POST">
                             <input type="hidden" Name="user_id" value="<?=$user["id"]?>">
+                            <input type="hidden" Name="status" value="active">
                             <button type="submit" class="text-green-500 hover:text-green-700 transition duration-300 mr-3">Active</button>
                         </form>
 
-                        <form action="index.php?action=SuspendUser" method="POST">
+                        <form action="index.php?action=suspendUser" method="POST">
                             <input type="hidden" Name="user_id" value="<?=$user["id"]?>">
+                            <input type="hidden" Name="status" value="suspended">
                             <button class="text-yellow-500 hover:text-yellow-700 transition duration-300 mr-3">Suspend</button>
                         </form>
 
-                        <form action="index.php?action=SuspendUser" method="POST">
+                        <form action="index.php?action=deleteUser" method="POST">
                             <input type="hidden" Name="user_id" value="<?=$user["id"]?>">
+                            <input type="hidden" Name="status" value="deleted">
                             <button type="submit" class="text-red-500 hover:text-red-700 transition duration-300">Delete</button>
                         </form>
                     </td>

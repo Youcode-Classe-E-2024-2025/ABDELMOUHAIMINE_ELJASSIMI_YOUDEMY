@@ -40,8 +40,8 @@ class UserController
         require_once "view/UserManagement.php";
     }
 
-    public function activeUser($id){
-        $this->userModel->active($id);
+    public function ChangeStatus($id,$status){
+        $this->userModel->ChangeStatusUser($id,$status);
         header("location: index.php?action=manageUsers");
     }
 
