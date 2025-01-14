@@ -105,5 +105,12 @@ class CourseController{
         require_once "view/MesCours.php";
     }
 
+    public function TeacherStats($teacher_id){
+        $stats = $this->CourseModel->teacherStatsics($teacher_id);
+        require_once "view/TeacherStatistics.php";
+
+
+    }
+
 
 }

@@ -127,6 +127,10 @@ switch($action){
                 $student_id = $_SESSION["user_id"];
                 $CourseController->MesCours($student_id);
                 break;
+            case "TeacherStats" : 
+                $teacher_id = $_SESSION["user_id"];
+                $CourseController->TeacherStats($teacher_id);
+                break;
 
         
 }

@@ -98,4 +98,12 @@ class CourseModel{
         $stmt->execute(['student_id' => $student_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function teacherStatsics($teacher_id){
+        $sql = "SELECT COUNT(DISTINCT c.id) AS courses_number, COUNT(e.student_id) AS enrolled_students FROM courses c
+                LEFT JOIN enrollments e ON c.id = e.course_id WHERE c.teacher_id = :teacher_id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['teacher_id' => $teacher_id]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
