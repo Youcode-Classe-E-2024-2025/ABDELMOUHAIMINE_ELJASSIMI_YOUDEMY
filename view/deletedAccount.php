@@ -15,7 +15,7 @@
                 <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-purple-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
                 <span class="relative group-hover:scale-110 transition-transform duration-300">Contact Support</span>
             </a>
-            <a href="index.php?action=login" class="group relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold text-white rounded-lg shadow-2xl bg-gradient-to-br from-teal-500 to-green-500 hover:from-teal-400 hover:to-green-400 transition-all duration-300 ease-out">
+            <a href="index.php?action=registerDeleted" class="group relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold text-white rounded-lg shadow-2xl bg-gradient-to-br from-teal-500 to-green-500 hover:from-teal-400 hover:to-green-400 transition-all duration-300 ease-out">
                 <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-teal-500 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
                 <span class="relative group-hover:scale-110 transition-transform duration-300">Create Account</span>
             </a>

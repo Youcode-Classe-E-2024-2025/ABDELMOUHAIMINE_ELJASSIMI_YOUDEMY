@@ -35,7 +35,11 @@ class UserController
         session_destroy();
         require_once "view/login&register.php";
     }
-
+    public function returnHome(){
+        session_unset();
+        session_destroy();
+        header("location: index.php?action=home");
+    }
     public function ManageUsers(){
         $users = $this->userModel->getAll("role != 'admin'");
         require_once "view/UserManagement.php";

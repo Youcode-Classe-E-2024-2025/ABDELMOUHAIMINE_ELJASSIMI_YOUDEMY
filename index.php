@@ -155,5 +155,11 @@ switch($action){
             case "deleted" : 
                 require_once "view/deletedAccount.php";
                 break;
+            case "registerDeleted" : 
+                $UserController->logout();
+                break;
+            case "returnHome" : 
+                $UserController->returnHome();
+                break;
 }
 ?>
