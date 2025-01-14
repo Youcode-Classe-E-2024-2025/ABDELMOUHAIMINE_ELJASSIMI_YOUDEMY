@@ -27,6 +27,7 @@ class UserController
         $_SESSION['user_email'] = $email;
         $_SESSION['user_id'] = $user['id'];
         $_SESSION["user_role"]=$user["role"];
+        $_SESSION["user_status"]=$user["status"];
         header('location: index.php');
     }
     public function logout(){

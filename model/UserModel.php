@@ -20,14 +20,22 @@ class UserModel{
     public function create($username, $email, $password, $role)
     {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-        $query = "INSERT INTO users (username, email, password, role) VALUES (:username, :email, :password, :role)";
+    
+        $status = ($role === 'teacher') ? 'suspended' : 'active';
+    
+        $query = "INSERT INTO users (username, email, password, role, status) 
+                  VALUES (:username, :email, :password, :role, :status)";
         $stmt = $this->pdo->prepare($query);
+    
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $hashedPassword);
         $stmt->bindParam(':role', $role);
+        $stmt->bindParam(':status', $status);
+
         return $stmt->execute();
     }
+    
     
     public function getAll($condition = '')
     {

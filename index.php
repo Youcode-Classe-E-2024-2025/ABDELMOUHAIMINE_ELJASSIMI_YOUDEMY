@@ -149,5 +149,11 @@ switch($action){
                 $status = $_POST["status"];
                 $UserController->ChangeStatus($id,$status);
                 break;
+            case "suspended" : 
+                require_once "view/suspendedAccount.php";
+                break;
+            case "deleted" : 
+                require_once "view/deletedAccount.php";
+                break;
 }
 ?>

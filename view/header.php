@@ -3,6 +3,15 @@ if(empty($_SESSION['user_id'])){
     header("location:?action=login");
     exit;
 }
+
+if($_SESSION['user_status'] == 'suspended' ){
+    header("location: index.php?action=suspended");
+    exit;
+}else if($_SESSION['user_status'] == 'deleted'){
+    header("location: index.php?action=deleted");
+    exit;
+}
+
 $role = isset($_SESSION["user_role"]) ? $_SESSION["user_role"] : 'visiteur'; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +44,6 @@ $role = isset($_SESSION["user_role"]) ? $_SESSION["user_role"] : 'visiteur'; ?>
                 <li><a href="index.php?action=manageCourses" class="text-white hover:text-purple-400 transition">Gérer mes cours</a></li>
                 <li><a href="index.php?action=TeacherStats" class="text-white hover:text-purple-400 transition">Statistiques</a></li>
             <?php elseif ($role === 'admin'): ?>
-                <li><a href="validate_teachers.php" class="text-white hover:text-purple-400 transition">Valider enseignants</a></li>
                 <li><a href="index.php?action=manageUsers" class="text-white hover:text-purple-400 transition">Gérer utilisateurs</a></li>
                 <li><a href="manage_content.php" class="text-white hover:text-purple-400 transition">Gérer contenu</a></li>
                 <li><a href="admin_stats.php" class="text-white hover:text-purple-400 transition">Statistiques globales</a></li>
