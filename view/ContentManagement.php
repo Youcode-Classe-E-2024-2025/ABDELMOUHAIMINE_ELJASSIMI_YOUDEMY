@@ -68,7 +68,7 @@ include("header.php") ?>
             <h2 class="text-2xl font-semibold mb-6 text-white">Tags</h2>
             <div class="flex flex-wrap gap-3 mb-6">
                 <?php foreach($tags as $tag): ?>
-                <span class="bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium"><?= $tag["name"] ?>    <a href="index?action=DeleteTag" class="font-extrabold text-gray-900 ml-4">X</a></span>
+                <span class="bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium"><?= $tag["name"] ?>    <a href="index.php?action=DeleteTag&id=<?= $tag["id"]?>" class="font-extrabold text-gray-900 ml-4">X</a></span>
                 <?php endforeach; ?>
             </div>
             <form action="index.php?action=CreateTag" method="POST" class="flex items-center space-x-4">

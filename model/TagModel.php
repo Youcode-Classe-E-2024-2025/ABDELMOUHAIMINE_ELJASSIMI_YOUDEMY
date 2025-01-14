@@ -22,4 +22,10 @@ class TagModel{
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(["name"=>$tagName]);
     }
+
+    public function delete($tagId){
+        $sql = "DELETE FROM tags WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(["id"=>$tagId]);
+    }
 }

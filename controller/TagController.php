@@ -14,6 +14,11 @@ class TagController{
         $this->tagModel->create($tagName);
         header("location: index.php?action=manageContent");
     }
+
+    public function DeleteTag($tagId){
+        $this->tagModel->delete($tagId);
+        header("location: index.php?action=manageContent");
+    }
     
 
 

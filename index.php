@@ -170,5 +170,9 @@ switch($action){
                 $tagName = $_POST["tagname"];
                 $TagController->CreateTag($tagName);
                 break;
+            case "DeleteTag" : 
+                $tagId = $_GET["id"];
+                $TagController->DeleteTag($tagId);
+                break;
 }
 ?>
