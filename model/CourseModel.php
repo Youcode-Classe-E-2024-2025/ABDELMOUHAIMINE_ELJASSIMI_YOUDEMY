@@ -32,19 +32,43 @@ class CourseModel{
         }
 
     }
-    public function getAll($condition = '') {
-        $sql = "SELECT c.*, cat.name AS category_name, COUNT(e.student_id) AS enrolled_students FROM  courses c JOIN categories cat  
-                 ON c.category_id = cat.id LEFT JOIN enrollments e  ON c.id = e.course_id";
-    
+    public function getAll($condition = '', $limit = null, $offset = null) {
+        $sql = "SELECT c.*, cat.name AS category_name, COUNT(e.student_id) AS enrolled_students 
+                FROM courses c 
+                JOIN categories cat ON c.category_id = cat.id 
+                LEFT JOIN enrollments e ON c.id = e.course_id";
+        
         if (!empty($condition)) {
             $sql .= " WHERE c.$condition";
         }
         $sql .= " GROUP BY c.id, cat.name";
     
+        if ($limit !== null && $offset !== null) {
+            $sql .= " LIMIT :limit OFFSET :offset";
+        }
+    
         $stmt = $this->pdo->prepare($sql);
+    
+        if ($limit !== null && $offset !== null) {
+            $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+        }
+    
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    public function countAll($condition = '') {
+        $sql = "SELECT COUNT(*) AS total FROM courses c";
+        if (!empty($condition)) {
+            $sql .= " WHERE c.$condition";
+        }
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total'];
+    }
+    
     
 
     public function Delete($id){
@@ -122,6 +146,12 @@ class CourseModel{
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
-    
+    public function CoursByCategory() {
+        $sql = "SELECT categories.name AS category_name, COUNT(courses.id) AS courses_count FROM categories LEFT JOIN
+         courses ON categories.id = courses.category_id GROUP BY categories.id, categories.name ORDER BY courses_count DESC;";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

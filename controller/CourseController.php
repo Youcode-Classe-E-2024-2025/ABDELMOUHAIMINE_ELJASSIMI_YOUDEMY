@@ -63,10 +63,20 @@ class CourseController{
         return $this->CourseModel->getAll();
     }
 
-    public function Home(){
-        $courses = $this->CourseModel->getAll();
+    public function Home() {
+        $limit = 6;
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $page = max($page, 1);
+        $offset = ($page - 1) * $limit;
+    
+        $total_records = $this->CourseModel->countAll();
+        $total_pages = ceil($total_records / $limit);
+    
+        $courses = $this->CourseModel->getAll('', $limit, $offset);
+    
         require_once "view/home.php";
     }
+    
 
     public function DisplayCourseContent($id){
         $courses = $this->CourseModel->getAll('id = '.$id);
@@ -121,6 +131,7 @@ class CourseController{
         $courses = $this->CourseModel->getAll();
         $topCourses =$this->CourseModel->TopCourses();
         $TeacherStats = $this->CourseModel->getTeacherStats();
+        $CategoryCours = $this->CourseModel->CoursByCategory();
         require_once "view/adminStats.php";
     }
 

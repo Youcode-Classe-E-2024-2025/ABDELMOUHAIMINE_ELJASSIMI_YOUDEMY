@@ -86,11 +86,22 @@ $role = isset($_SESSION["user_role"]) ? $_SESSION["user_role"] : 'visiteur'; ?>
         </div>
         <div class="flex justify-center mt-16">
             <nav class="inline-flex rounded-full shadow-lg overflow-hidden">
-                <a href="#" class="px-6 py-3 bg-gray-800 text-white hover:bg-purple-500 transition duration-300">Previous</a>
-                <a href="#" class="px-6 py-3 bg-gray-800 text-white hover:bg-purple-500 transition duration-300">1</a>
-                <a href="#" class="px-6 py-3 bg-purple-600 text-white font-bold">2</a>
-                <a href="#" class="px-6 py-3 bg-gray-800 text-white hover:bg-purple-500 transition duration-300">3</a>
-                <a href="#" class="px-6 py-3 bg-gray-800 text-white hover:bg-purple-500 transition duration-300">Next</a>
+                <?php if ($page > 1): ?>
+                    <a href="?page=<?php echo $page - 1; ?>" 
+                    class="px-6 py-3 bg-gray-800 text-white hover:bg-purple-500 transition duration-300">Previous</a>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                    <a href="?page=<?php echo $i; ?>" 
+                    class="px-6 py-3 <?php echo $i == $page ? 'bg-purple-600 font-bold' : 'bg-gray-800'; ?> text-white hover:bg-purple-500 transition duration-300">
+                        <?php echo $i; ?>
+                    </a>
+                <?php endfor; ?>
+
+                <?php if ($page < $total_pages): ?>
+                    <a href="?page=<?php echo $page + 1; ?>" 
+                    class="px-6 py-3 bg-gray-800 text-white hover:bg-purple-500 transition duration-300">Next</a>
+                <?php endif; ?>
             </nav>
         </div>
     </main>

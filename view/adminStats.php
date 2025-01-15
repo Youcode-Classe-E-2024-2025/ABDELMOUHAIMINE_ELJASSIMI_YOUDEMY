@@ -13,10 +13,14 @@ include("header.php") ?>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div class="bg-gray-800 rounded-xl shadow-lg p-6">
             <h2 class="text-xl font-semibold mb-4 text-white">Course Category Distribution</h2>
-
-            <div class="w-full h-64 bg-gray-600 rounded-md flex items-center justify-center">
-                <span class="text-gray-400">Pie Chart Placeholder</span>
-            </div>
+            <ul class="space-y-4">
+                <?php foreach ($CategoryCours as $CatCours):?>
+                <li class="flex justify-between items-center text-white">
+                    <span class="font-medium"><?= $CatCours["category_name"] ?></span>
+                    <span class="text-blue-500 font-bold"><?= $CatCours["courses_count"] ?></span>
+                </li>
+                <?php endforeach; ?>
+            </ul>
         </div>
 
         <div class="bg-gray-800 rounded-xl shadow-lg p-6">
