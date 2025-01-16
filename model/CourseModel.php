@@ -32,7 +32,10 @@ class CourseModel{
         }
 
     }
+
+    
     public function getAll($condition = '', $limit = null, $offset = null) {
+        $studnet_id = $_SESSION["user_id"];
         $sql = "SELECT c.*, cat.name AS category_name, COUNT(e.student_id) AS enrolled_students 
                 FROM courses c 
                 JOIN categories cat ON c.category_id = cat.id 
@@ -68,6 +71,33 @@ class CourseModel{
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['total'];
     }
+
+    public function countFiltered($condition, $params) {
+        $sql = "SELECT COUNT(*) FROM courses WHERE $condition";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchColumn();
+    }
+    
+    public function getFiltered($condition, $params, $limit, $offset) {
+        $sql = "SELECT c.*, cat.name AS category_name, COUNT(e.student_id) AS enrolled_students 
+                FROM courses c 
+                JOIN categories cat ON c.category_id = cat.id 
+                LEFT JOIN enrollments e ON c.id = e.course_id 
+                WHERE $condition 
+                GROUP BY c.id, cat.name 
+                LIMIT :limit OFFSET :offset";
+    
+        $stmt = $this->pdo->prepare($sql);
+        foreach ($params as $key => $value) {
+            $stmt->bindValue($key, $value);
+        }
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     
     
 
@@ -152,6 +182,13 @@ class CourseModel{
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function AlreadyRolled($student_id,$course_id){
+        $sql = "SELECT * FROM enrollments WHERE course_id = :course_id and student_id = :student_id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(["course_id"=>$course_id, "student_id"=>$student_id]);
+        return $stmt->fetchColumn(PDO::FETCH_ASSOC);
     }
 
 }

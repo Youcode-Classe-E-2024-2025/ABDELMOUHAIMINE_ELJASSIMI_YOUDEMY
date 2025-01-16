@@ -22,13 +22,16 @@ class UserController
     }
 
     public function login($email, $password)
-    {
+    {   if($this->userModel->login($email, $password) !== false){
         $user = $this->userModel->login($email, $password);
         $_SESSION['user_email'] = $email;
         $_SESSION['user_id'] = $user['id'];
         $_SESSION["user_role"]=$user["role"];
         $_SESSION["user_status"]=$user["status"];
         header('location: index.php');
+    }else{
+        header("location: index.php?action=login&valide=false");
+    }
     }
     public function logout(){
         session_unset();

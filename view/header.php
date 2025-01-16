@@ -28,7 +28,7 @@ $role = isset($_SESSION["user_role"]) ? $_SESSION["user_role"] : 'visiteur'; ?>
         }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-100"></body>
+<body class="bg-gray-900 text-gray-100">
 <header class="bg-gradient-to-r from-purple-700 via-purple-600 to-purple-500 shadow-lg">
 <nav class="bg-gray-800 shadow-lg">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">

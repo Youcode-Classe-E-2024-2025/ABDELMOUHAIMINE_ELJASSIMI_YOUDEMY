@@ -64,14 +64,25 @@ include("header.php"); ?>
                         </li>
                     </ul>
                 </div>
+                <h2 class="text-2xl font-semibold mt-6 mb-6 text-white">Tags</h2>
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <?php foreach($tags as $tag): ?>
+                        <span class="bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium"><?= $tag["name"] ?></span>
+                        <?php endforeach; ?>
+                    </div>
 
-
+                <?php if($_SESSION['user_role'] == 'student'): ?>
                 <div class="mt-8">
+                    <?php if($enrolled):?>
+                        <a href="index.php?action=mesCours" class="w-full inline-block bg-purple-600 text-white text-center py-3 px-6 rounded-full shadow-lg hover:bg-purple-700 transition duration-300" >already rolled click to check your courses</a>
+                        <?php else: ?>
                     <form action="index.php?action=enroll" method="POST">
                         <input type="hidden" name="id" value="<?=$course["id"]?>">
                         <button class="w-full inline-block bg-purple-600 text-white text-center py-3 px-6 rounded-full shadow-lg hover:bg-purple-700 transition duration-300" type="submit">Enroll Now</button>
                     </form>
                 </div>
+                <?php endif; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>

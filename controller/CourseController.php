@@ -69,17 +69,29 @@ class CourseController{
         $page = max($page, 1);
         $offset = ($page - 1) * $limit;
     
-        $total_records = $this->CourseModel->countAll();
+        $keyword = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
+    
+        if (!empty($keyword)) {
+            $condition = "title LIKE :keyword OR description LIKE :keyword";
+            $params = [':keyword' => '%' . $keyword . '%'];
+            $total_records = $this->CourseModel->countFiltered($condition, $params); 
+            $courses = $this->CourseModel->getFiltered($condition, $params, $limit, $offset);
+        } else {
+            $total_records = $this->CourseModel->countAll();
+            $courses = $this->CourseModel->getAll('', $limit, $offset);
+        }
+    
         $total_pages = ceil($total_records / $limit);
-    
-        $courses = $this->CourseModel->getAll('', $limit, $offset);
-    
         require_once "view/home.php";
     }
+    
     
 
     public function DisplayCourseContent($id){
         $courses = $this->CourseModel->getAll('id = '.$id);
+        $student_id = $_SESSION["user_id"];
+        $enrolled =$this->CourseModel->AlreadyRolled($student_id,$id);
+        $tags = $this->TagModel->GetTagsByCourse($id);
         require_once "view/CourseDetails.php";
     }
 
@@ -134,6 +146,8 @@ class CourseController{
         $CategoryCours = $this->CourseModel->CoursByCategory();
         require_once "view/adminStats.php";
     }
+
+
 
 
 

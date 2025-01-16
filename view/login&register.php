@@ -3,6 +3,7 @@ if(!empty($_SESSION['user_id'])){
     header("location: index.php?action=home");
     exit;
 }
+$valide = isset($_GET["valide"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,13 +26,15 @@ if(!empty($_SESSION['user_id'])){
         <form id="login-form" action="index.php?action=logincheck" method="POST">
             <div class="mb-4">
                 <label for="login-email" class="block text-gray-400 font-semibold mb-2">Email Address</label>
-                <input  type="email" id="login-email"  name="email" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-200"  required >
+                <input  type="email" id="login-email"  name="email" class="w-full px-3 py-2 bg-gray-700 border  <?php echo ($valide == "false") ? 'border-red-600' : 'border-gray-600'; ?>" rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-200"  required >
             </div>
             <div class="mb-4">
                 <label for="login-password" class="block text-gray-400 font-semibold mb-2">Password</label>
-                 <input  type="password"  id="login-password"  name="password"  class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-200"  required >
+                 <input  type="password"  id="login-password"  name="password"  class="w-full px-3 py-2 bg-gray-700 border  <?php echo ($valide == "false") ? 'border-red-600' : 'border-gray-600'; ?>" rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-200"  required >
             </div>
-
+            <?php if ($valide == "false"):?>
+                <p class="text-red-600">Email or password inccorect !</p>
+            <?php endif; ?>
             <div class="mb-6 flex items-center">
                 <input type="checkbox" id="remember" name="remember" class="mr-2 bg-gray-700 focus:ring-purple-400">
                 <label for="remember" class="text-gray-300">Remember Me</label>

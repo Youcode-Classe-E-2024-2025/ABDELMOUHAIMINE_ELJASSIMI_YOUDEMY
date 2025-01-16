@@ -54,16 +54,19 @@ $role = isset($_SESSION["user_role"]) ? $_SESSION["user_role"] : 'visiteur'; ?>
 </header>
     <section class="bg-gradient-to-r from-gray-800 to-gray-900 py-16">
         <div class="container mx-auto px-6">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-4xl font-bold mb-6 text-white">Find Your Perfect Course</h2>
-                <p class="text-gray-400 mb-10">Explore thousands of courses in technology, business, design, and more.</p>
-                <div class="flex justify-center">
-                    <input type="text" placeholder="Search for courses..." 
-                           class="w-full max-w-lg px-6 py-3 rounded-l-full bg-gray-700 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500">
-                    <button class="bg-purple-600 text-white px-6 py-3 rounded-r-full shadow-md hover:bg-purple-700 hover:shadow-lg transition duration-300">
-                        Search
-                    </button>
-                </div>
+        <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-6 text-white">Find Your Perfect Course</h2>
+        <p class="text-gray-400 mb-10">Explore thousands of courses in technology, business, design, and more.</p>
+                <form method="GET" action="index.php?action=home">
+                    <div class="flex justify-center">
+                        <input type="text" name="keyword" placeholder="Search for courses..." 
+                            class="w-full max-w-lg px-6 py-3 rounded-l-full bg-gray-700 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <button type="submit" 
+                                class="bg-purple-600 text-white px-6 py-3 rounded-r-full shadow-md hover:bg-purple-700 hover:shadow-lg transition duration-300">
+                            Search
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>

@@ -36,4 +36,12 @@ class TagModel{
             $stmt->execute(['course_id'=>$course,'tag_id'=>$tag]);
         }
     }
+
+
+    public function GetTagsByCourse($course_id){
+        $sql = "SELECT t.* FROM tags t JOIN course_tags ct ON t.id = ct.tag_id and ct.course_id = :course_id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(["course_id"=>$course_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
