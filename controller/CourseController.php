@@ -56,7 +56,7 @@ class CourseController{
 
     public function create($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath){
         $this->CourseModel->createCourse($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath);
-        require_once "view/home.php";
+        header("location: index.php?action=home");
     }
 
     public function GetAllCourses(){
