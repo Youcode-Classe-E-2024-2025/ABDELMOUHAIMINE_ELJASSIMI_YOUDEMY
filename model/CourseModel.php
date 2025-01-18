@@ -10,9 +10,9 @@ class CourseModel{
         $this->pdo = $database->getConnection();
     }
 
-    public function createCourse($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath){
-        $sql = "INSERT INTO courses (title, description, category_id, teacher_id, video_path, document_path, thumbnail) 
-                VALUES (:title, :description, :category_id, :teacher_id, :video_path, :document_path, :thumbnail)";
+    public function createCourse($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath,$price){
+        $sql = "INSERT INTO courses (title, description, category_id, teacher_id, video_path, document_path, thumbnail,price) 
+                VALUES (:title, :description, :category_id, :teacher_id, :video_path, :document_path, :thumbnail,:price)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             "title" => $title,
@@ -21,7 +21,8 @@ class CourseModel{
             "teacher_id" => $teacher_id,
             "video_path" => $videoPath,
             "document_path" => $documentPath,
-            "thumbnail" => $ThumbnailPath
+            "thumbnail" => $ThumbnailPath,
+            "price"=>$price
         ]);
 
         $course_id = $this->pdo->lastInsertId();

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "controller/UserController.php";
 require "controller/CourseController.php";
 require "controller/TagController.php";
@@ -9,7 +10,6 @@ $CourseController = new CourseController();
 $TagController = new TagController();
 $CategoryController = new CategoryController();
 
-session_start();
 
 $action = $_GET["action"]??'home';
 
@@ -34,9 +34,16 @@ switch($action){
 
     case "logincheck" :
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        $UserController->login(htmlspecialchars($email),htmlspecialchars($password));
+
+            echo "POST : ".$_POST['csrf_token'];
+            echo "SESSION : ".$_SESSION['csrf_token'];
+
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                die("CSRF token validation failed");
+            }
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+            $UserController->login(htmlspecialchars($email),htmlspecialchars($password));
         }
         break;
         
@@ -52,10 +59,10 @@ switch($action){
             if ($_SERVER["REQUEST_METHOD"] === 'POST') {
                 $title = htmlspecialchars($_POST["title"]);
                 $Description = htmlspecialchars($_POST["description"]);
-                $price = floatval($_POST["price"]); // Ensure price is numeric
-                $category = intval($_POST["category"]);
+                $price = $_POST["price"];
+                $category = $_POST["category"];
                 $tags = $_POST['tags'];
-                $teacher_id = intval($_SESSION["user_id"]);
+                $teacher_id = $_SESSION["user_id"];
     
                 $videoFile = $_FILES['video_file'];
                 $videoPath = null;
@@ -74,7 +81,7 @@ switch($action){
                 if ($ThumbnailFile['error'] === UPLOAD_ERR_OK) {
                     $ThumbnailPath = $CourseController->uploadFile($ThumbnailFile, 'uploads/photo');
                 }
-                $CourseController->create($title, $Description, $category, $tags, $teacher_id, $videoPath, $documentPath, $ThumbnailPath);           
+                $CourseController->create($title, $Description, $category, $tags, $teacher_id, $videoPath, $documentPath, $ThumbnailPath,$price);           
              }
             break;
 

@@ -27,26 +27,36 @@ $role = isset($_SESSION["user_role"]) ? $_SESSION["user_role"] : 'visiteur'; ?>
 <body class="bg-gray-900 text-gray-100"></body>
 <header class="bg-gradient-to-r from-purple-700 via-purple-600 to-purple-500 shadow-lg">
 <nav class="bg-gray-800 shadow-lg">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <!-- Logo -->
         <a href="index.php" class="text-3xl font-bold text-white hover:opacity-90 transition duration-300">Youdemy</a>
-        <ul class="flex space-x-6">
-            <li><a href="?action=home" class="text-white hover:text-purple-400 transition">Catalogue</a></li>
+        
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="lg:hidden text-white focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+
+        <!-- Menu -->
+        <ul id="menu" class="hidden lg:flex space-x-6 lg:space-x-6 bg-gray-800 lg:bg-transparent absolute lg:static top-16 lg:top-auto right-0 lg:right-auto w-full lg:w-auto z-10 lg:z-auto text-center lg:text-left">
+            <li><a href="?action=home" class="block px-4 py-2 lg:inline-block text-white hover:text-purple-400 transition">Catalogue</a></li>
             <?php if ($role === 'visiteur'): ?>
-                <li><a href="index.php?action=login" class="text-white hover:text-purple-400 transition">Login</a></li>
+                <li><a href="index.php?action=login" class="block px-4 py-2 lg:inline-block text-white hover:text-purple-400 transition">Login</a></li>
             <?php elseif ($role === 'student'): ?>
-                <li><a href="index.php?action=mesCours" class="text-white hover:text-purple-400 transition">Mes Cours</a></li>
-                <li><a href="profile.php" class="text-white hover:text-purple-400 transition">Profil</a></li>
+                <li><a href="index.php?action=mesCours" class="block px-4 py-2 lg:inline-block text-white hover:text-purple-400 transition">Mes Cours</a></li>
+                <li><a href="profile.php" class="block px-4 py-2 lg:inline-block text-white hover:text-purple-400 transition">Profil</a></li>
             <?php elseif ($role === 'teacher'): ?>
-                <li><a href="index.php?action=addCourse" class="text-white hover:text-purple-400 transition">Ajouter un cours</a></li>
-                <li><a href="index.php?action=manageCourses" class="text-white hover:text-purple-400 transition">Gérer mes cours</a></li>
-                <li><a href="index.php?action=TeacherStats" class="text-white hover:text-purple-400 transition">Statistiques</a></li>
+                <li><a href="index.php?action=addCourse" class="block px-4 py-2 lg:inline-block text-white hover:text-purple-400 transition">Ajouter un cours</a></li>
+                <li><a href="index.php?action=manageCourses" class="block px-4 py-2 lg:inline-block text-white hover:text-purple-400 transition">Gérer mes cours</a></li>
+                <li><a href="index.php?action=TeacherStats" class="block px-4 py-2 lg:inline-block text-white hover:text-purple-400 transition">Statistiques</a></li>
             <?php elseif ($role === 'admin'): ?>
-                <li><a href="index.php?action=manageUsers" class="text-white hover:text-purple-400 transition">Gérer utilisateurs</a></li>
-                <li><a href="index.php?action=manageContent" class="text-white hover:text-purple-400 transition">Gérer contenu</a></li>
-                <li><a href="index.php?action=adminstats" class="text-white hover:text-purple-400 transition">Statistiques globales</a></li>
+                <li><a href="index.php?action=manageUsers" class="block px-4 py-2 lg:inline-block text-white hover:text-purple-400 transition">Gérer utilisateurs</a></li>
+                <li><a href="index.php?action=manageContent" class="block px-4 py-2 lg:inline-block text-white hover:text-purple-400 transition">Gérer contenu</a></li>
+                <li><a href="index.php?action=adminstats" class="block px-4 py-2 lg:inline-block text-white hover:text-purple-400 transition">Statistiques globales</a></li>
             <?php endif; ?>
             <?php if ($role !== 'visiteur'): ?>
-                <li><a href="?action=logout" class="text-red-400 hover:text-red-600 transition">Logout</a></li>
+                <li><a href="?action=logout" class="block px-4 py-2 lg:inline-block text-red-400 hover:text-red-600 transition">Logout</a></li>
             <?php endif; ?>
         </ul>
     </div>
@@ -109,5 +119,13 @@ $role = isset($_SESSION["user_role"]) ? $_SESSION["user_role"] : 'visiteur'; ?>
         </div>
     </main>
     <?php include("footer.php")?>
+
+    <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    menuToggle.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+    });
+    </script>
 </body>
 </html>

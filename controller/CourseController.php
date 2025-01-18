@@ -54,8 +54,8 @@ class CourseController{
         }
     }
 
-    public function create($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath){
-        $this->CourseModel->createCourse($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath);
+    public function create($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath,$price){
+        $this->CourseModel->createCourse($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath,$price);
         header("location: index.php?action=home");
     }
 

@@ -1,9 +1,11 @@
 <?php
 include("header.php") ?>
-<div class="container mx-auto px-6 py-12">
-    <h1 class="text-4xl font-extrabold mb-8 text-center text-purple-600">Content Management</h1>
+<div class="container mx-auto px-4 sm:px-6 lg:px-12 py-8">
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-8 text-center text-purple-600">Content Management</h1>
 
     <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden mb-8">
+    <!-- Container for horizontal scrolling on mobile -->
+    <div class="overflow-x-auto">
         <table class="w-full table-auto">
             <thead class="bg-gray-800">
                 <tr>
@@ -27,14 +29,14 @@ include("header.php") ?>
                         <?=$course['category_name']?>
                         </span>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex">
-                        <form action="index.php?action=editCourse" method="POST">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex flex-wrap gap-2">
+                        <form action="index.php?action=editCourse" method="POST" class="w-full sm:w-auto">
                             <input type="hidden" name="id" value="<?=$course['id']?>">
-                            <button type="submit" class="text-blue-400 hover:text-blue-300 transition duration-300 mr-3">Edit</button>
+                            <button type="submit" class="text-blue-400 hover:text-blue-300 transition duration-300 w-full sm:w-auto">Edit</button>
                         </form>
-                        <form action="index.php?action=deleteCourse" method="POST">
+                        <form action="index.php?action=deleteCourse" method="POST" class="w-full sm:w-auto">
                             <input type="hidden" name="id" value="<?=$course['id']?>">
-                            <button type="submit" class="text-red-400 hover:text-red-300 transition duration-300">Delete</button>
+                            <button type="submit" class="text-red-400 hover:text-red-300 transition duration-300 w-full sm:w-auto">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -42,9 +44,9 @@ include("header.php") ?>
             </tbody>
         </table>
     </div>
-    
+</div>
     <!-- Grid Layout for Categories and Tags Management -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Categories Management -->
         <div class="bg-gray-800 rounded-xl shadow-lg p-6">
             <h2 class="text-2xl font-semibold mb-6 text-white">Categories</h2>
@@ -55,7 +57,6 @@ include("header.php") ?>
                     <a href="index.php?action=deleteCategory&id=<?=$categorie["id"]?>" class="text-red-600 hover:text-red-800 transition duration-300 transform hover:scale-105">Delete</a>
                 </li>
                 <?php  endforeach ; ?>
-                <!-- Add more categories -->
             </ul>
             <form action="index.php?action=createCategory" method="POST" class="mt-6 flex items-center space-x-4">
                 <input type="text" name="categoryname" placeholder="New category" class="flex-grow px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 transition duration-200">
