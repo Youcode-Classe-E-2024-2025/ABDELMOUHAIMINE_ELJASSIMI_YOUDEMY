@@ -4,6 +4,7 @@ include("header.php") ?>
             <h1 class="text-3xl font-bold mb-8 text-center text-purple-400">Add New Course</h1>
             
             <form action="?action=createCourse" method="POST" enctype="multipart/form-data" class="bg-gray-800 rounded-lg shadow-md p-6 text-gray-300 max-w-lg mx-auto">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                 <div class="mb-4">
                     <label for="title" class="block text-gray-400 font-semibold mb-2">Course Title</label>
                     <input type="text" id="title" name="title" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md" required>

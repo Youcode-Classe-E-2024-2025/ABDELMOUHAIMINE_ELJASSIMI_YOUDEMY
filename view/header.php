@@ -12,6 +12,10 @@ if($_SESSION['user_status'] == 'suspended' ){
     exit;
 }
 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 $role = isset($_SESSION["user_role"]) ? $_SESSION["user_role"] : 'visiteur'; ?>
 <!DOCTYPE html>
 <html lang="en">

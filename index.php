@@ -58,6 +58,11 @@ switch($action){
 
         case 'createCourse':
             if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+
+                if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                    die("CSRF token validation failed");
+                }
+
                 $title = htmlspecialchars($_POST["title"]);
                 $Description = htmlspecialchars($_POST["description"]);
                 $price = $_POST["price"];
@@ -103,6 +108,9 @@ switch($action){
             $CourseController->DeleteCourse($id);
             break;
         case "CourseEdit" : 
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                die("CSRF token validation failed");
+            }
                 $title = htmlspecialchars($_POST["title"]);
                 $Description = htmlspecialchars($_POST["description"]);
                 $category = $_POST["category"];
