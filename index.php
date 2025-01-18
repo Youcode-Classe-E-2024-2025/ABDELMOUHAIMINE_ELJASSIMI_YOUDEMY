@@ -5,6 +5,7 @@ require "controller/CourseController.php";
 require "controller/TagController.php";
 require "controller/CategoryController.php";
 
+
 $UserController = new UserController();
 $CourseController = new CourseController();
 $TagController = new TagController();
@@ -20,24 +21,24 @@ switch($action){
 
     case "login":
           require_once "view/login&register.php";
+          
         break;
 
     case "register":
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $name = $_POST["name"];
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        $role = $_POST["role"];
-        $UserController->register(htmlspecialchars($name),htmlspecialchars($email),htmlspecialchars($password),$role);
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                die("CSRF token validation failedddddd");
+            }
+            $name = $_POST["name"];
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+            $role = $_POST["role"];
+            $UserController->register(htmlspecialchars($name),htmlspecialchars($email),htmlspecialchars($password),$role);
         }
         break;
 
     case "logincheck" :
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            echo "POST : ".$_POST['csrf_token'];
-            echo "SESSION : ".$_SESSION['csrf_token'];
-
             if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
                 die("CSRF token validation failed");
             }

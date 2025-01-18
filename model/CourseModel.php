@@ -36,7 +36,7 @@ class CourseModel{
 
     
     public function getAll($condition = '', $limit = null, $offset = null) {
-        $studnet_id = $_SESSION["user_id"];
+          if(!empty($_SESSION["user_id"])){ $studnet_id = $_SESSION["user_id"];};
         $sql = "SELECT c.*, cat.name AS category_name, COUNT(e.student_id) AS enrolled_students 
                 FROM courses c 
                 JOIN categories cat ON c.category_id = cat.id 

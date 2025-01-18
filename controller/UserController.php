@@ -13,7 +13,7 @@ class UserController
     public function register($username, $email, $password, $role)
     {
         if ($this->userModel->create($username, $email, $password, $role)) {
-            require_once "view/login&register.php";
+            header("location: index.php?action=login");
         }
     }
     public function listUsers()
@@ -36,7 +36,7 @@ class UserController
     public function logout(){
         session_unset();
         session_destroy();
-        require_once "view/login&register.php";
+        header("location: index.php?action=login");
     }
     public function returnHome(){
         session_unset();
