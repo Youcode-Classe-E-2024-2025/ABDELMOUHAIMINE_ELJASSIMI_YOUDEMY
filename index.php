@@ -208,5 +208,10 @@ switch($action){
             case "adminstats" :
                 $CourseController->adminStats();
                 break;
+            case "generateCertificat" : 
+                $course_id = $_GET["id"];
+                $student_id = $_SESSION["user_id"];
+                $CourseController->generateCertificat($course_id,$student_id);
+                break;
 }
 ?>

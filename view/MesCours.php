@@ -12,7 +12,7 @@
                         <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300 uppercase tracking-wide">Course Title</th>
                         <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300 uppercase tracking-wide">Description</th>
                         <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300 uppercase tracking-wide">Category</th>
-                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300 uppercase tracking-wide">Action</th>
+                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300 uppercase tracking-wide">Certificat</th>
                     </tr>
                 </thead>
                 <tbody class="bg-gray-700 divide-y divide-gray-600">
@@ -30,8 +30,7 @@
                             </span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <a href="edit_course.php?id=<?= $course['id'] ?>" class="text-blue-400 hover:text-blue-600 transition">Edit</a> |
-                            <a href="delete_course.php?id=<?= $course['id'] ?>" class="text-red-400 hover:text-red-600 transition">Delete</a>
+                            <a href="?action=generateCertificat&id=<?= $course['id'] ?>" class="text-green-400 hover:text-green-600 transition">Certificat</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

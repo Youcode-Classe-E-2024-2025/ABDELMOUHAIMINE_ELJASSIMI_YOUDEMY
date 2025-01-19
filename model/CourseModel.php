@@ -154,8 +154,8 @@ class CourseModel{
     }
 
     public function teacherStatsics($teacher_id){
-        $sql = "SELECT COUNT(DISTINCT c.id) AS courses_number, COUNT(e.student_id) AS enrolled_students FROM courses c
-                LEFT JOIN enrollments e ON c.id = e.course_id WHERE c.teacher_id = :teacher_id";
+        $sql = "SELECT COUNT(DISTINCT c.id) AS courses_number,  COUNT(e.student_id) AS enrolled_students, 
+        SUM(c.price * (SELECT COUNT(e1.student_id) FROM enrollments e1 WHERE e1.course_id = c.id)) AS total_revenue FROM courses c LEFT JOIN enrollments e ON c.id = e.course_id  WHERE c.teacher_id = :teacher_id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute(['teacher_id' => $teacher_id]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -190,6 +190,13 @@ class CourseModel{
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(["course_id"=>$course_id, "student_id"=>$student_id]);
         return $stmt->fetchColumn(PDO::FETCH_ASSOC);
+    }
+
+    public function Certificat($course_id,$student_id){
+        $sql = "SELECT c.*, u.username student_name, e.enrolled_at FROM courses c LEFT JOIN enrollments e ON c.id = e.course_id JOIN users u ON e.student_id = u.id WHERE c.id = :course_id AND u.id = :student_id;";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(["course_id"=>$course_id,"student_id"=>$student_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
 }

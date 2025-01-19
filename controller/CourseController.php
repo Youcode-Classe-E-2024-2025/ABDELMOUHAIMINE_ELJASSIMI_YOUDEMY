@@ -148,6 +148,12 @@ class CourseController{
     }
 
 
+    public function generateCertificat($course_id,$student_id){
+        $Cours = $this->CourseModel->Certificat($course_id,$student_id);
+        require_once "view/certificat.php";
+    }
+
+
 
 
 

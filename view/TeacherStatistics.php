@@ -4,7 +4,7 @@ include("header.php") ?>
     <h1 class="text-3xl font-bold mb-8 text-center text-purple-600">Course Statistics</h1>
     
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
     <div class="bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
             <h2 class="text-lg font-semibold text-gray-300 mb-2">Total Students</h2>
@@ -18,13 +18,8 @@ include("header.php") ?>
             <p class="text-sm text-gray-400 mt-2">Active courses online</p>
         </div>
         <div class="bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-            <h2 class="text-lg font-semibold text-gray-300 mb-2">Pending Reviews</h2>
-            <p class="text-4xl font-bold text-yellow-500">12</p>
-            <p class="text-sm text-gray-400 mt-2">Courses awaiting approval</p>
-        </div>
-        <div class="bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
             <h2 class="text-lg font-semibold text-gray-300 mb-2">Revenue</h2>
-            <p class="text-4xl font-bold text-purple-500">$8,934</p>
+            <p class="text-4xl font-bold text-purple-500">$<?= $stats["total_revenue"] ?></p>
             <p class="text-sm text-gray-400 mt-2">Total revenue earned</p>
         </div>
     </div>
