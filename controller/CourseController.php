@@ -26,19 +26,23 @@ class CourseController{
 
 
 
-    public function uploadFile($file, $targetDir, $allowedTypes = ['video/mp4', 'application/pdf', 'image/jpeg', 'image/png']) {
+    public function uploadFile($file, $allowedTypes = ['video/mp4', 'application/pdf', 'image/jpeg', 'image/png']) {
         $fileName = basename($file["name"]);
         $fileType = $file["type"];
         $fileTmpName = $file["tmp_name"];
-        $fileSize = $file["size"];
         $fileError = $file["error"];
-
-        $targetFile = $targetDir . '/' . $fileName;
     
-        if (!in_array($fileType, $allowedTypes)) {
+        if (strpos($fileType, 'video') !== false) {
+            $targetDir = 'uploads/videos';
+        } elseif (strpos($fileType, 'image') !== false) {
+            $targetDir = 'uploads/images';
+        } elseif ($fileType === 'application/pdf') {
+            $targetDir = 'uploads/documents';
+        } else {
             return "File type not allowed. Allowed types are: mp4, pdf, jpg, png.";
         }
-    
+        $targetFile = $targetDir . '/' . $fileName;
+
         if ($fileError !== UPLOAD_ERR_OK) {
             return "Error uploading the file.";
         }
@@ -53,6 +57,7 @@ class CourseController{
             return "Error moving the uploaded file.";
         }
     }
+    
 
     public function create($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath,$price){
         $this->CourseModel->createCourse($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath,$price);
