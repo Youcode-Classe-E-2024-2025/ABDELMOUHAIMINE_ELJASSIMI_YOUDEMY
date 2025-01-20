@@ -70,7 +70,7 @@ class CourseController{
 
     public function Home() {
         $limit = 6;
-        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
         $page = max($page, 1);
         $offset = ($page - 1) * $limit;
     
@@ -97,6 +97,7 @@ class CourseController{
         $student_id = $_SESSION["user_id"];
         $enrolled =$this->CourseModel->AlreadyRolled($student_id,$id);
         $tags = $this->TagModel->GetTagsByCourse($id);
+        $teacher = $this->CourseModel->getTeacherByCourse($id);
         require_once "view/CourseDetails.php";
     }
 

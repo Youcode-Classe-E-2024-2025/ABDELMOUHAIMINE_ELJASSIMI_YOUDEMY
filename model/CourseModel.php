@@ -5,7 +5,7 @@ require_once "config.php";
 abstract class BaseCourseModel extends Database {
     protected $pdo;
 
-    public function __construct($pdo) {
+    public function __construct() {
         $this->pdo = parent::getConnection();
     }
 
@@ -15,10 +15,6 @@ abstract class BaseCourseModel extends Database {
 
 class CourseModel extends BaseCourseModel{
 
-    public function __construct() {
-        $database = new Database();
-        parent::__construct($database->getConnection());
-    }
 
     public function createCourse($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath,$price){
         $sql = "INSERT INTO courses (title, description, category_id, teacher_id, video_path, document_path, thumbnail,price) 
@@ -206,6 +202,13 @@ class CourseModel extends BaseCourseModel{
         $sql = "SELECT c.*, u.username student_name, e.enrolled_at FROM courses c LEFT JOIN enrollments e ON c.id = e.course_id JOIN users u ON e.student_id = u.id WHERE c.id = :course_id AND u.id = :student_id;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(["course_id"=>$course_id,"student_id"=>$student_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getTeacherByCourse($id){
+        $sql = "SELECT u.* FROM users u JOIN courses c ON u.id = c.teacher_id WHERE c.id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(["id"=>$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 

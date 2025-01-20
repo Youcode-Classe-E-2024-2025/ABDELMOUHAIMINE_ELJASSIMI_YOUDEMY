@@ -7,11 +7,13 @@ include("header.php"); ?>
             <h1 class="text-4xl font-bold text-white mb-4"><?= $course["title"] ?></h1>
             <p class="text-gray-400 mb-4"><?= $course["title"] ?></p>
             <div class="flex items-center space-x-4">
-                <img src="<?= $course["thumbnail"] ?>" alt="Teacher" class="w-12 h-12 rounded-full">
-                <span class="text-gray-300">Taught by <strong class="text-white">John Doe</strong></span>
+            <?php $firstLetter = strtoupper(substr($teacher["username"], 0, 1));?>
+            <div class="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center text-white">
+                <span class="text-xl"><?= $firstLetter ?></span>
+            </div>
+                <span class="text-gray-300">Taught by <strong class="text-white"><?= $teacher["username"] ?></strong></span>
             </div>
         </div>
-        
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <!-- Course Content -->
