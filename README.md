@@ -10,6 +10,7 @@
 - **GitHub Repository :** [View on GitHub](https://github.com/Youcode-Classe-E-2024-2025/ABDELMOUHAIMINE_ELJASSIMI_YOUDEMY)
 - **UML Use Case :** [View on Lucid Chart](https://lucid.app/lucidchart/57e0c189-9928-4051-a894-d1c214b5d266/edit?viewport_loc=-79%2C6%2C4617%2C2038%2C0_0&invitationId=inv_91290661-4d2e-4730-8542-0552aadc5445)
 - **UML Class:** [View on Lucid Chart](https://lucid.app/lucidchart/6e8b78d6-f300-49ff-b824-e193cf2fb1f4/edit?viewport_loc=-1530%2C-1517%2C2993%2C1321%2C0_0&invitationId=inv_a599da62-27f3-4d39-97db-7ba3276955af)
+- **Presentation Canva:** [View on Canva](https://www.canva.com/design/DAGcpZeDJ8s/YMcOoCyCqyW3R6hNnBSIaw/edit?utm_content=DAGcpZeDJ8s&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 
 # Configuration et Exécution du Projet
