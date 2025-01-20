@@ -2,11 +2,11 @@
 
 require_once "config.php";
 
-abstract class BaseCourseModel {
+abstract class BaseCourseModel extends Database {
     protected $pdo;
 
     public function __construct($pdo) {
-        $this->pdo = $pdo;
+        $this->pdo = parent::getConnection();
     }
 
     abstract public function createCourse($title,$Description,$category,$tags,$teacher_id,$videoPath,$documentPath,$ThumbnailPath,$price);

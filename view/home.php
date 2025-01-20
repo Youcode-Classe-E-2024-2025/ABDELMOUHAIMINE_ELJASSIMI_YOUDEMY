@@ -1,9 +1,9 @@
 <?php 
 if(!empty($_SESSION["user_id"])){
-if($_SESSION['user_status'] == 'suspended' ){
+if(!empty($_SESSION["user_status"]) && $_SESSION['user_status'] == 'suspended'){
     header("location: index.php?action=suspended");
     exit;
-}else if($_SESSION['user_status'] == 'deleted'){
+}else if(!empty($_SESSION["user_status"]) && $_SESSION['user_status'] == 'deleted'){
     header("location: index.php?action=deleted");
     exit;
 }

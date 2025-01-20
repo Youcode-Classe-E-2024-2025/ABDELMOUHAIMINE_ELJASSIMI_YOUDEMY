@@ -2,7 +2,7 @@
 
 require_once "config.php";
 
-class UserModel{
+class UserModel extends Database{
     
     private $username;
     private $email;
@@ -13,8 +13,7 @@ class UserModel{
     protected $pdo;
 
     public function __construct(){
-        $database = new Database();
-        $this->pdo = $database->getConnection();
+        $this->pdo = parent::getConnection();
     }
 
     public function create($username, $email, $password, $role)

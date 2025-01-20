@@ -2,13 +2,12 @@
 
 require_once "config.php";
 
-class TagModel{
+class TagModel extends Database{
 
     protected $pdo;
-
+    
     public function __construct(){
-        $database = new Database();
-        $this->pdo = $database->getConnection();
+        $this->pdo = parent::getConnection();
     }
 
     public function getAll()
