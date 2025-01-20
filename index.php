@@ -213,5 +213,8 @@ switch($action){
                 $student_id = $_SESSION["user_id"];
                 $CourseController->generateCertificat($course_id,$student_id);
                 break;
+            default : 
+            require_once "view/404.php";
+            break;
 }
 ?>
